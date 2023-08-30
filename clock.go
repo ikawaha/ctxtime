@@ -28,5 +28,8 @@ func NewClock(opts ...ClockOption) *Clock {
 }
 
 func (c *Clock) Now() time.Time {
+	if c.start == c.base {
+		return time.Now()
+	}
 	return c.base.Add(time.Since(c.start))
 }
